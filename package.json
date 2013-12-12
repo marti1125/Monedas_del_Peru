@@ -1,0 +1,31 @@
+{
+  "name": "Monedas_del_Peru",
+  "version": "1.0.0",
+  "description": "Monedas del Peru",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marti1125/Monedas_del_Peru.git"
+  },
+  "author": "Willy Aguirre",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "102969af1b4bea432db9f9c2015a413cde03d6fa",
+  "bugs": {
+    "url": "https://github.com/marti1125/Monedas_del_Peru/issues"
+  },
+  "dependencies": {
+    "connect-timeout": "0.0.1",
+    "express": "3.4.6",
+    "mongoose": "3.8.1",
+    "jade": "*",
+    "stylus": "*"    
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
