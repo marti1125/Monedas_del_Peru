@@ -17,7 +17,7 @@ mongoose.model('Moneda', monedaSchema);
 
 var Moneda = mongoose.model('Moneda');
 
-exports.monedas = function(req, res){
+/*exports.monedas = function(req, res){
 	return Moneda.find({}, function(err, monedas) {
     if (!err) {
       return res.send(monedas);
@@ -26,6 +26,17 @@ exports.monedas = function(req, res){
     }
 
 	});
+};*/
+
+exports.monedas = function(req, res){
+  Moneda.find(getMonedas);
+  function getMonedas(err, productos) {
+    if (err) {
+      console.log(err)
+      return next()
+    }
+    return res.render('monedas', {title: 'Lista de Monedas', productos: productos})
+  }
 };
 
 exports.nuevo = function(req, res){

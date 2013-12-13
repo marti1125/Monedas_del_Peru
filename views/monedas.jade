@@ -1,4 +1,14 @@
 extends layout
 
 block content
-	h1= moneda.titulo
+	h1= title
+
+	table
+		tr
+			th Titulo
+			th Imagen
+		- if (productos)
+			- each producto in productos
+				tr
+					td #{producto.titulo}
+					td #{producto.imagen}
