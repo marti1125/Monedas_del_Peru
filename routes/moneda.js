@@ -17,17 +17,6 @@ mongoose.model('Moneda', monedaSchema);
 
 var Moneda = mongoose.model('Moneda');
 
-/*exports.monedas = function(req, res){
-	return Moneda.find({}, function(err, monedas) {
-    if (!err) {
-      return res.send(monedas);
-    } else {
-      return console.log(err);
-    }
-
-	});
-};*/
-
 exports.monedas = function(req, res){
   Moneda.find(getMonedas);
   function getMonedas(err, productos) {
@@ -58,4 +47,15 @@ exports.nuevo = function(req, res){
     }
   });
   return res.send(moneda);
+};
+
+// Api Listar Monedas
+exports.listMonedas = function(req, res){
+  return Moneda.find({}, function(err, monedas) {
+    if (!err) {
+      return res.send(monedas);
+    } else {
+      return console.log(err);
+    }
+  });
 };

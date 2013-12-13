@@ -43,6 +43,9 @@ app.get('/monedas/nuevo', moneda.nuevo, function(req, res){
 	console.log('guardando..');
 });
 
+// Api
+app.get('/listMonedas', moneda.listMonedas);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
