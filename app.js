@@ -4,9 +4,9 @@
  */
 
 var express = require('express');
+var monedas = require('./controllers/monedas');
 var routes = require('./routes');
-var user = require('./routes/user');
-var moneda = require('./routes/moneda');
+
 var http = require('http');
 var path = require('path');
 
@@ -33,18 +33,17 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 
 // Todas las monedas
-app.get('/monedas', moneda.monedas);
+app.get('/monedas', monedas.listarMonedas);
 
 // Agregar nueva moneda
-app.get('/monedas/nuevo', moneda.nuevo, function(req, res){
+app.get('/monedas/agregar', monedas.nuevo, function(req, res){
 	console.log('guardando..');
 });
 
 // Api
-app.get('/listMonedas', moneda.listMonedas);
+app.get('/listMonedas', monedas.jsonListMonedas);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

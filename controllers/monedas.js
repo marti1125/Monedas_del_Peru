@@ -1,25 +1,12 @@
-
-/*
- * Agregar nueva moneda
- */
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/monedas');
 
-var Schema = mongoose.Schema;
+var monedaSchema = require('../models/moneda');
+var Moneda = mongoose.model('Moneda', monedaSchema);
 
-var monedaSchema = new Schema({
-  titulo:  String,
-  imagen: String,
-  fecha: { type: Date, default: Date.now }
-});
-
-mongoose.model('Moneda', monedaSchema);
-
-var Moneda = mongoose.model('Moneda');
-
-exports.monedas = function(req, res){
-  Moneda.find(getMonedas);
-  function getMonedas(err, productos) {
+exports.listarMonedas = function(req, res){
+  Moneda.find(obtenerMonedas);
+  function obtenerMonedas(err, productos) {
     if (err) {
       console.log(err)
       return next()
@@ -28,6 +15,18 @@ exports.monedas = function(req, res){
   }
 };
 
+// Api Listar Monedas
+exports.jsonListMonedas = function(req, res){
+  return Moneda.find({}, function(err, monedas) {
+    if (!err) {
+      return res.send(monedas);
+    } else {
+      return console.log(err);
+    }
+  });
+};
+
+// Api Agregar Moneda
 exports.nuevo = function(req, res){
   res.render('nuevo', { title: 'Nuevo' });
   var moneda;
@@ -47,15 +46,4 @@ exports.nuevo = function(req, res){
     }
   });
   return res.send(moneda);
-};
-
-// Api Listar Monedas
-exports.listMonedas = function(req, res){
-  return Moneda.find({}, function(err, monedas) {
-    if (!err) {
-      return res.send(monedas);
-    } else {
-      return console.log(err);
-    }
-  });
 };
