@@ -5,8 +5,8 @@ var monedaSchema = require('../models/moneda');
 var Moneda = mongoose.model('Moneda', monedaSchema);
 
 exports.listarMonedas = function(req, res){
-  Moneda.find(obtenerMonedas);
-  function obtenerMonedas(err, productos) {
+  Moneda.find(getMonedas);
+  function getMonedas(err, productos) {
     if (err) {
       console.log(err)
       return next()
@@ -14,6 +14,39 @@ exports.listarMonedas = function(req, res){
     return res.render('monedas', {title: 'Lista de Monedas', productos: productos})
   }
 };
+
+exports.create = function (req, res, next) {
+  if (req.method === 'GET') {
+    return res.render('show_edit', {title: 'Nueva Moneda', producto: {}})
+  } else if (req.method === 'POST') {
+    // Obtenemos las variables y las validamos
+    var titulo = req.body.titulo || ''
+    var imagen = req.body.imagen || ''
+
+    // Validemos que nombre o descripcion no vengan vacíos
+    if ((titulo=== '') || (imagen === '')) {
+      console.log('ERROR: Campos vacios')
+      return res.send('Hay campos vacíos, revisar')
+    }
+
+    // Creamos el documento y lo guardamos
+    var moneda = new Moneda({
+        titulo : titulo
+      , imagen : imagen
+    })
+
+    moneda.save(onSaved)
+
+    function onSaved (err) {
+      if (err) {
+        console.log(err)
+        return next(err)
+      }
+
+      return res.redirect('/monedas')
+    }
+  }
+}
 
 // Api Listar Monedas
 exports.jsonListMonedas = function(req, res){
