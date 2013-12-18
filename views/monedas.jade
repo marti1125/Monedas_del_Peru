@@ -7,8 +7,12 @@ block content
 		tr
 			th Titulo
 			th Imagen
-		- if (productos)
-			- each producto in productos
+			th &nbsp;
+		- if (monedas)
+			- each moneda in monedas
 				tr
-					td #{producto.titulo}
-					td #{producto.imagen}
+					td a(href="/moneda/" + moneda._id.toString()) #{moneda.titulo}
+					td #{moneda.imagen}
+					td a(href="/retirar-moneda/" + moneda._id.toString()) Borrar
+	p
+  		a(href='/agregar-moneda') Agregar Moneda

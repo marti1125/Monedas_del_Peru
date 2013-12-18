@@ -6,5 +6,4 @@ var monedaSchema = new Schema({
   fecha: { type: Date, default: Date.now }
 });
 
-
 module.exports = monedaSchema

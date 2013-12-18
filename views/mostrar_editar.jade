@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  h2 #{title}
+  form(method='post')
+
+    p
+      label(for="titulo") Titulo:
+        input(type='text', name='titulo', value=moneda.titulo)
+
+    p
+      label(for="image") Image:
+        input(type='text', name='image', size=100, value=moneda.imagen)
+
+    p
+      input(type='submit', value='Guardar')
