@@ -11,8 +11,10 @@ block content
 		- if (monedas)
 			- each moneda in monedas
 				tr
-					td a(href="/moneda/" + moneda._id.toString()) #{moneda.titulo}
+					td
+						a(href="/moneda/" + moneda._id.toString()) #{moneda.titulo}
 					td #{moneda.imagen}
-					td a(href="/retirar-moneda/" + moneda._id.toString()) Borrar
+					td 
+						a(href="/retirar-moneda/" + moneda._id.toString()) Borrar
 	p
-  		a(href='/agregar-moneda') Agregar Moneda
+		a(href='/agregar-moneda') Agregar Moneda

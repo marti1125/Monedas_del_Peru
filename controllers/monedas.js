@@ -34,8 +34,8 @@ exports.mostrar_editar = function(req, res, next) {
 exports.actualizar = function(req, res, next) {
   var id = req.params.id
 
-  var titulo = req.body.nombre || ''
-  var imagen = req.body.descripcion || ''
+  var titulo = req.body.titulo || ''
+  var imagen = req.body.imagen || ''
 
   // Validemos que nombre o descripcion no vengan vacíos
   if ((titulo=== '') || (imagen === '')) {
@@ -68,7 +68,8 @@ exports.actualizar = function(req, res, next) {
       return next(err)
     }
 
-    return res.redirect('/moneda/' + id)
+    //return res.redirect('/moneda/' + id)
+    return res.redirect('/moneda')
   }
 }
 
@@ -103,7 +104,7 @@ exports.retirar = function(req, res, next) {
 
 exports.agregar = function(req, res, next) {
   if (req.method === 'GET') {
-    return res.render('show_edit', {title: 'Nueva Moneda', producto: {}})
+    return res.render('mostrar_editar', {titulo: 'Nueva Moneda', moneda: {}})
   } else if (req.method === 'POST') {
     // Obtenemos las variables y las validamos
     var titulo = req.body.titulo || ''
@@ -129,7 +130,7 @@ exports.agregar = function(req, res, next) {
         return next(err)
       }
 
-      return res.redirect('/monedas')
+      return res.redirect('/moneda')
     }
   }
 };
