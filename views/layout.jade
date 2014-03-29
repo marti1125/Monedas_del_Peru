@@ -2,6 +2,25 @@ doctype 5
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/foundation.min.css')
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    div.row
+      nav.top-bar(data-topbar='')
+        ul.title-area
+          li.name
+            h1
+              a(href='#') Monedas del Perú
+          li.toggle-topbar.menu-icon
+            a(href='#')
+  
+        // Left Nav Section
+        section.top-bar-section
+          ul.right
+            li
+              a(href='#') Login
+
     block content
+
+    script(src='javascripts/foundation.min.js')
